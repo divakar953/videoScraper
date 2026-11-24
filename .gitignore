@@ -1,1 +1,17 @@
+# Dependencies
+node_modules/
+
+# Environment variables (keeps your SerpApi key safe)
 .env
+.env.*
+!.env.example
+
+# Logs
+logs
+*.log
+npm-debug.log*
+
+# OS & Editor files
+.DS_Store
+Thumbs.db
+.vscode/
