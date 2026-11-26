@@ -11,7 +11,7 @@ async function search() {
   btn.textContent = "Searching...";
   setStatus("Searching...");
   document.getElementById("results").innerHTML = "";
-  document.getElementById("download").style.display = "none";
+  document.getElementById("downloads").style.display = "none";
 
   try {
     const res = await fetch(
@@ -26,7 +26,7 @@ async function search() {
     }
 
     setStatus(`Found ${currentVideos.length} video(s).`);
-    document.getElementById("download").style.display = "block";
+    document.getElementById("downloads").style.display = "block";
     renderVideos();
   } catch (err) {
     setStatus("Error: " + err.message);
@@ -68,7 +68,7 @@ async function downloadOne(index) {
   btn.textContent = "Downloading...";
 
   try {
-    const res = await fetch("/api/download", {
+    const res = await fetch("/api/downloads", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ url: video.link, title: video.title }),
@@ -105,7 +105,7 @@ async function downloadAll() {
   setStatus("All downloads complete.");
 }
 
-const downloadAllBtn = document.getElementById("download");
+const downloadAllBtn = document.getElementById("downloadBtn");
 downloadAllBtn.addEventListener("click", downloadAll);
 
 function setStatus(message) {

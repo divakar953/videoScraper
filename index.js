@@ -3,7 +3,7 @@ import express from "express";
 import path from "path";
 import fs from "fs";
 import { execFile } from "child_process";
-import "dotenv/confit";
+import "dotenv/config";
 
 const app = express();
 const port = 3000;
@@ -33,7 +33,8 @@ app.get("/api/search", async (req, res) => {
     count: count,
   });
 
-  res.json(response);
+  const videos = (response.short_video_results || []).slice(0, Number(count));
+  res.json({ videos });
 });
 
 app.post("/api/downloads", (req, res) => {
